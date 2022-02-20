@@ -8,5 +8,5 @@ const connectionString = process.env.DATABASE_URL
 
 export const pool = new Pool({
   connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
-  ssl: { rejectUnauthorized: false }
+  ssl: false
 })
