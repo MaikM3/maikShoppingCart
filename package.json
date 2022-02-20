@@ -7,12 +7,11 @@
     "node": "16.x"
   },
   "scripts": {
-    "start": "npm run build && node ./dist/index.js",
-    "build": "rimraf ./dist && tsc",
+    "start": "npm run build && node ./build/index.js",
+    "build": "rimraf ./build && tsc",
     "lint": "eslint . --ext .ts",
     "test": "npm test",
-    "dev": "nodemon",
-    "heroku-prebuild": "npm install"
+    "dev": "nodemon"
   },
   "author": "Miguel Angel Gatto",
   "license": "ISC",
