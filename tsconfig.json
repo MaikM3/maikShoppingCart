@@ -3,8 +3,7 @@
     "lib": [
       "es2020"
     ],
-    "baseUrl": "./src",
-    "emitDecoratorMetadata": true,
+    "baseUrl": "./",
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
@@ -27,6 +26,6 @@
     "src/**/*.ts",
   ],
   "exclude": [
-    "src/public/"
+    "node_modules/**/*"
   ]
 }
