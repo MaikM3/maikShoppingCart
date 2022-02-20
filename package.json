@@ -4,6 +4,7 @@
   "description": "Samlple shopping cart BE",
   "main": "index.ts",
   "scripts": {
+    "start": "npm run build && node dist/index.js",
     "build": "tsc",
     "lint": "eslint . --ext .ts",
     "test": "npm test",

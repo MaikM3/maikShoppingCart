@@ -3,3 +3,7 @@ DB_PASSWORD=password
 DB_HOST=localhost
 DB_PORT=5432
 DB_DATABASE=shopping
+
+DATABASE_URL=postgresql://postgres:password@localhost:5432/shopping
+
+NODE_ENV=development
