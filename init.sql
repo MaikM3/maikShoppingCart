@@ -9,8 +9,8 @@ CREATE TABLE item (
   ID SERIAL PRIMARY KEY,
   description VARCHAR(255) NOT NULL,
   price decimal NOT NULL,
-  createdAt datetime NOT NULL,
-  updatedAt datetime NULL
+  createdAt date NOT NULL,
+  updatedAt date NULL
 );
 
 INSERT INTO tax (name, percentage)
