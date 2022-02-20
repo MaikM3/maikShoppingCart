@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Samlple shopping cart BE",
   "main": "index.ts",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "npm run build && node dist/index.js",
     "build": "rimraf ./dist && tsc",
