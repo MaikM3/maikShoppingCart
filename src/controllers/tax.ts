@@ -8,7 +8,7 @@ interface TaxInput {
 }
 
 
-interface Tax {
+export interface Tax {
   id: number;
   name: string;
   percentage?: number;
@@ -16,14 +16,6 @@ interface Tax {
 }
 
 export default class TaxController {
-  public async getResp(): Promise<any> {
-
-    const resp = await pool.query("SELECT * from TAX");
-    logger.info(resp.rows)
-    console.dir(resp);
-    return resp
-  }
-
   public async getAll(): Promise<[Tax]> {
     const resp = await pool.query("SELECT * from TAX");
     return (resp.rows as [Tax]);
