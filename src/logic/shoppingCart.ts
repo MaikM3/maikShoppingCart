@@ -35,9 +35,11 @@ export default class ShoppingCartLogic {
     if (!shoppingCart) {
       const newSp: ShoppingCartInput =  {
         status_id: 1,
-        user_id: 1
+        user_id: itemToAdd.user_id
       }
       shoppingCart = await this.shoppingCartCont().add(newSp);
+      await this.shoppingCartCont().addTaxes(shoppingCart.id, 1);
+      await this.shoppingCartCont().addTaxes(shoppingCart.id, 2);
     } 
 
     // find items in cart, if exists update qty, if not create 
@@ -48,6 +50,8 @@ export default class ShoppingCartLogic {
         item_id: itemToAdd.item_id,
         qty: itemToAdd.quantity
       });
+
+      
     } else {
       shoppingCartItem = await this.shoppingCartItemCont().updateQuantity({ ...shoppingCartItem, qty:  itemToAdd.quantity });
       logger.info('update spi', shoppingCartItem);

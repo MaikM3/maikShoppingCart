@@ -19,6 +19,7 @@ export interface ShoppingCart {
 }
 
 const TABLE = 'shopping_cart'
+const TABLE_SHOPPING_CART_TAX = 'shopping_cart_tax'
 
 export default class Controller {
   public async getAll(): Promise<[ShoppingCart]> {
@@ -62,6 +63,14 @@ export default class Controller {
     
     return (resp.rows[0]);
   }
+
+  public async addTaxes(shopping_cart_id: number, tax_id: number): Promise<ShoppingCart> {
+    const resp = await pool.query(`INSERT INTO ${TABLE_SHOPPING_CART_TAX} (shopping_cart_id, tax_id) VALUES  ($1, $2) RETURNING *`,
+      [shopping_cart_id, tax_id]);
+
+    return (resp.rows[0] as ShoppingCart);
+  }
+
 
   public async delete(id: number): Promise<number> {
     const resp = await pool.query(`DELETE FROM ${TABLE} where id = $1`, [id]);
