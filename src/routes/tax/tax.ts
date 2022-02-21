@@ -1,5 +1,7 @@
 import TaxController from "../../controllers/tax";
 import { Request, Response } from "express";
+import { validationResult } from 'express-validator';
+
 
 export const getAll = async (_req: Request, res: Response) => {
   const controller = new TaxController();
@@ -14,6 +16,12 @@ export const getOne =  async (req: Request, res: Response) => {
 }
 
 export const add = async (req: Request, res: Response) => {
+    // TODO: validation example
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     const { name, percentage, fixedAmount } = req.body
     const controller = new TaxController();
     const response = await controller.add({name, percentage, fixedAmount});
