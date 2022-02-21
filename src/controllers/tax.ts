@@ -28,8 +28,8 @@ export default class TaxController {
   }
 
   public async add(tax: TaxInput): Promise<number> {
-    const resp = await pool.query(`INSERT INTO tax (name, percentage, fixedamount)
-    VALUES  ($1, $2, $3);`, [tax.name, tax.percentage, tax.fixedAmount]);
+    const resp = await pool.query(`INSERT INTO tax (name, percentage)
+    VALUES  ($1, $2);`, [tax.name, tax.percentage]);
 
     return (resp.rowCount);
   }
