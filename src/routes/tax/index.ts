@@ -5,7 +5,7 @@ const taxRouter = Router();
 taxRouter.get('/',getAll);
 taxRouter.get('/:id/',getOne);
 taxRouter.post('/', add);
-taxRouter.put('/', update);
-taxRouter.delete('/', remove);
+taxRouter.put('/:id', update);
+taxRouter.delete('/:id', remove);
 
 export default taxRouter;

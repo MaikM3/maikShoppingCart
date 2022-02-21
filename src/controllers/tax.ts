@@ -27,19 +27,19 @@ export default class TaxController {
     return (resp.rowCount > 0 ? resp.rows[0] as Tax : null);
   }
 
-  public async add(tax: TaxInput): Promise<number> {
+  public async add(tax: TaxInput): Promise<Tax | null> {
     const resp = await pool.query(`INSERT INTO tax (name, percentage)
-    VALUES  ($1, $2);`, [tax.name, tax.percentage]);
+    VALUES  ($1, $2)  RETURNING *`, [tax.name, tax.percentage]);
 
-    return (resp.rowCount);
+    return (resp.rowCount > 0 ? resp.rows[0] as Tax : null);
   }
 
-  public async update(tax: Tax): Promise<number> {
+  public async update(tax: Tax): Promise<Tax | null> {
     const resp = await pool.query(`UPDATE tax 
-    SET "name"=$1, percentage=$2, fixedamount= $3 WHERE id = $4`,
-    [tax.name, tax.percentage, tax.fixedAmount, tax.id]);
+    SET "name"=$1, percentage=$2 WHERE id = $3 RETURNING *`,
+    [tax.name, tax.percentage, tax.id]);
     
-    return (resp.rowCount);
+    return (resp.rowCount > 0 ? resp.rows[0] as Tax : null);
   }
 
   public async delete(id: number): Promise<number> {

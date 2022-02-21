@@ -7,9 +7,9 @@ export const getAll = async (_req: Request, res: Response) => {
   return res.status(200).send(response);
 }
 
-export const getOne =  async (_req: Request, res: Response) => {
+export const getOne =  async (req: Request, res: Response) => {
   const controller = new TaxController();
-  const response = await controller.getAll();
+  const response = await controller.getOne(parseInt(req.params.id));
   return res.status(200).send(response);
 }
 
@@ -17,15 +17,15 @@ export const add = async (req: Request, res: Response) => {
     const { name, percentage, fixedAmount } = req.body
     const controller = new TaxController();
     const response = await controller.add({name, percentage, fixedAmount});
-    return res.sendStatus(response > 0 ? 200 : 404);
+    return res.status(200).send(response);
   };
 
 export const update = async (req: Request, res: Response) => {
-  const { name, percentage, fixedAmount } = req.body
-  const tax = { id: parseInt(req.params.id), name, percentage, fixedAmount}
+  const { name, percentage } = req.body
+  const tax = { id: parseInt(req.params.id), name, percentage}
   const controller = new TaxController();
   const response = await controller.update(tax);
-  return res.sendStatus(response > 0 ? 200 : 404);
+  return res.status(200).send(response);
 };
 
 export const remove = async (req: Request, res: Response) => {
