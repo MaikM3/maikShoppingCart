@@ -85,7 +85,7 @@ export default class ShoppingCartLogic {
 
   public async invoiceCart(shoppingCartId: number): Promise<ShoppingCart> {
     // TODO Process the order, create the invoice
-    console.log('shoppingCartId, INVOICED_STATUS', shoppingCartId, INVOICED_STATUS);
+    logger.info('shoppingCartId, INVOICED_STATUS', shoppingCartId, INVOICED_STATUS);
     
     return await this.shoppingCartCont().changeStatus(shoppingCartId, INVOICED_STATUS);
   }

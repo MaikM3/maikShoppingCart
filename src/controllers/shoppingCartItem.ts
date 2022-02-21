@@ -29,14 +29,12 @@ export default class ShoppingCartItemController {
     SELECT * from ${TABLE} 
       INNER JOIN ${TABLE_ITEM} ON ${TABLE}.item_id = ${TABLE_ITEM}.id
       WHERE shopping_cart_id = $1`, [shopping_cart_id]);
-    console.log('PASO ACA');
     
     return (resp.rows as [ShoppingCartItemDetails]);
   }
 
   public async getOne(shopping_cart_id: number, item_id: number): Promise<ShoppingCartItem | null> {
     const resp = await pool.query(`SELECT * from ${TABLE} where shopping_cart_id = $1 and item_id = $2`, [shopping_cart_id, item_id]);
-    console.log('PASO MAL LUGAR');
     
     return (resp.rows[0] as ShoppingCartItem);
   }
