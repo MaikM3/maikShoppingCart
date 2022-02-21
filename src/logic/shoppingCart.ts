@@ -38,6 +38,7 @@ export default class ShoppingCartLogic {
         user_id: itemToAdd.user_id
       }
       shoppingCart = await this.shoppingCartCont().add(newSp);
+      // TODO add taxes according business rules
       await this.shoppingCartCont().addTaxes(shoppingCart.id, 1);
       await this.shoppingCartCont().addTaxes(shoppingCart.id, 2);
     } 
