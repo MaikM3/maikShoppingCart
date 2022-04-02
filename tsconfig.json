@@ -3,9 +3,10 @@
     "lib": [
       "es2020"
     ],
-    "baseUrl": "./",
+    "baseUrl": ".",
     "esModuleInterop": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false,
     "importHelpers": true,
     "module": "commonjs",

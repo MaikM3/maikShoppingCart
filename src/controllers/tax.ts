@@ -1,5 +1,6 @@
-import logger from '../shared/logger';
 import { pool } from '../shared/conn'
+
+import { Get, Path, Route, Controller } from 'tsoa'
 
 interface TaxInput {
   name: string;
@@ -14,14 +15,14 @@ export interface Tax {
   percentage?: number;
   fixedAmount?: number;
 }
-
-export default class TaxController {
+@Route("tax")
+export class TaxController extends Controller {
   public async getAll(): Promise<[Tax]> {
     const resp = await pool.query("SELECT * from TAX");
     return (resp.rows as [Tax]);
   }
-
-  public async getOne(id: number): Promise<Tax | null> {
+  @Get("{id}")
+  public async getOne(@Path() id: number): Promise<Tax | null> {
     const resp = await pool.query("SELECT * from TAX where id = $1", [id]);
     
     return (resp.rowCount > 0 ? resp.rows[0] as Tax : null);

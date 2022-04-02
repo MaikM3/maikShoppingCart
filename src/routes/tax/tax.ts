@@ -1,4 +1,4 @@
-import TaxController from "../../controllers/tax";
+import { TaxController } from "../../controllers/tax";
 import { Request, Response } from "express";
 import { validationResult } from 'express-validator';
 
